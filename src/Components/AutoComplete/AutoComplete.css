@@ -1,0 +1,40 @@
+.wrapper {
+    background: #ffffff;
+    border-radius: 5px;
+    position: relative;
+    width: 25rem;
+}
+.results {
+    padding: 0px;
+  }
+  
+  .results ul {margin: 0; padding: 0; }
+  .results ul li {
+    list-style: none;
+    border-radius: 3px;
+    opacity: 0;
+    display: none;
+    padding: 8px 12px;
+    transition: all .5s linear;
+  }
+  
+  .show .results ul li {
+    opacity: 1;
+    display: block;
+    cursor: pointer;
+  }
+  
+  .show .results {
+    padding: 10px;
+  }
+  
+  .results ul li:hover {
+    background: #ececec
+  }
+
+  @media (max-width:600px) {
+    .wrapper{
+      width: 80%;
+      margin-right: 2rem;
+    }
+  }
