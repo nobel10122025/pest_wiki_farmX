@@ -1,8 +1,12 @@
 @import '../Wiki/PestWiki.css';
+.input{
+    margin-top: 2rem;
+}
 .options-container{
-    margin: 2rem;
+    /* margin: 2rem; */
     display: flex;
 }
+
 .options-container span{
     cursor: pointer;
     border: 2px solid transparent;
@@ -23,30 +27,7 @@
 .input-container.active{
     display: block;
 }
-.filedrop{
-    min-height: 120px;
-    border: 3px solid hsl(var(--sec-color));
-    text-align: center;
-    font-size: 24px;
-    padding: 32px;
-    border-radius: 4px;
-}
-  
-.filedrop.drag {
-    border: 3px dashed #1e90ff;
-}
-  
-.filedrop.ready {
-    border: 3px solid #32cd32;
-}
-.filedrop i{
-    color: hsl(var(--sec-color));
-    font-size: 5rem;
-    cursor: default;
-}
-/* .search-file{
-    border: 2px solid hsl(var(--sec-color));
-} */
+
 input[type=file]{
     width: 20rem;
     height: 3rem;

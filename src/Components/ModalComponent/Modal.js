@@ -1,8 +1,10 @@
 import React , {useEffect} from 'react';
 import './Modal.css';
-import TabItem from '../TabComponent/TabItem';
+import '../TabComponent/TabContent.css'
+import 'react-tabs/style/react-tabs.css';
 import TabContent from '../TabComponent/TabContent';
-import FileDrop from '../TabComponent/FileDrop/FileDrop';
+
+
 
 function Modal({isVisible=false , handleClose}) {
 
@@ -27,33 +29,7 @@ function Modal({isVisible=false , handleClose}) {
             <i className="fas fa-times-circle close-btn" onClick={handleClose}></i>
             <h2>Upload a image by ...</h2>
             <div className="underline"></div>
-            <TabContent defaultIndex="1" onTabClick={console.log}>
-              <TabItem label="Upload by url" index="1">
-                <form>
-                  <div className='input'>
-                    <input type="search" placeholder="Enter your URL here" className="searchbox" />
-                    <button className="button-main">            
-                        <i className="fas fa-search search-icon"></i>
-                    Search
-                    </button>
-                  </div>
-                </form>
-              </TabItem>
-              <TabItem label="Drag and Drop" index="2">
-                <FileDrop onDrop={console.log}/>
-              </TabItem>
-              <TabItem label="Brower image" index="3">
-                <form>
-                  <div className='input'>
-                    <input type="file" placeholder="Enter your URL here" className="search-file" />
-                    <button className="button-main">            
-                        <i className="fas fa-search search-icon"></i>
-                    Search
-                    </button>
-                  </div>
-                </form>
-              </TabItem>
-            </TabContent>
+               <TabContent />
           </div>
       </div>
     )

@@ -1,43 +1,76 @@
-import React ,{useState} from 'react'
-import './TabContent.css'
-function TabContent({ defaultIndex = 0, onTabClick, children }) {
+import React, { Component } from 'react';
+import '../TabComponent/TabContent.css'
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import FileDrop from '../TabComponent/FileDrop/FileDrop';
+import 'react-tabs/style/react-tabs.css';
 
-    const [bindIndex , setBindIndex] = useState(defaultIndex)
+const CustomTab = ({ children ,selectedIndex}) => (
+    <Tab>
+      <div className='options-container'>
+        <span className={`${selectedIndex === 'true' ? 'active':''}`}>
+        {children}
+        </span>
+      </div>
+    </Tab>
+  );
+  
+  CustomTab.tabsRole = 'Tab';
 
-    const changeTab = newIndex => {
-        if (typeof onTabClick === 'function') onTabClick(newIndex);
-        setBindIndex(newIndex);
-      };
-    
-     const items = children.filter(item => item.type.name === "TabItem");
+class TabContent extends Component {
 
+    constructor(){
+        super();
+        this.state = { tabIndex: 0 };
+    }
 
+  render() {
     return (
     <>
-        <div className="options-container">
-        {items.map(({ props: { index, label } }) => (
-          <span
-            key={`tab-btn-${index}`}
-            onClick={() => changeTab(index)}
-            className={bindIndex === index ? 'active' : ''}
-          >
-            {label}
-          </span>
-        ))}
-        </div>
-      <div >
-        {items.map(({ props }) => (
-          <div
-            {...props}
-            className={`input-container ${
-              bindIndex === props.index ? 'active' : ''
-            }`}
-            key={`tab-content-${props.index}`}
-          />
-        ))}
-        </div>
+        <Tabs 
+            selectedIndex={this.state.tabIndex} 
+            onSelect={tabIndex => this.setState({ tabIndex })}>
+          <TabList>
+            <CustomTab selectedIndex={`${this.state.tabIndex===0 ? 'true' : 'false'}`}>
+                Upload by URL
+            </CustomTab>
+            <CustomTab selectedIndex={`${this.state.tabIndex===1 ?'true' : 'false'}`}>
+                Drag and Drop
+            </CustomTab>
+            <CustomTab selectedIndex={`${this.state.tabIndex===2 ?'true' : 'false'}`}>
+                Brower image
+            </CustomTab>
+          </TabList>
+          <TabPanel>
+          <form>
+            <div className='input'>
+              <input type="search" placeholder="Enter your URL here" className="searchbox" />
+              <button className="button-main">            
+                  <i className="fas fa-search search-icon"></i>
+              Search
+              </button>
+            </div>
+          </form>
+          </TabPanel>
+          <TabPanel>
+            <div className='input'>
+              <FileDrop onDrop={console.log}/>
+            </div>
+          </TabPanel>
+          <TabPanel>
+            <form>
+              <div className='input'>
+                <input type="file" placeholder="Enter your URL here" className="search-file" />
+                <button className="button-main">            
+                    <i className="fas fa-search search-icon"></i>
+                Search
+                </button>
+              </div>
+            </form>
+          </TabPanel>
+          </Tabs>
     </>
     )
+  }
 }
 
-export default TabContent
+export default TabContent;
